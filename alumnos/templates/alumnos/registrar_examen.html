@@ -1,0 +1,19 @@
+{% extends 'alumnos/base.html' %}
+
+    {% block content %}
+        <h1>Registrar Exámen del Alumno: {{ alumno_nc }}</h1>
+        <h2>Contenido:  {{contenido}}</h2>
+        <form method="POST" class="post-form">{% csrf_token %}
+          {{ form.as_p }}
+          <label>Asignatura: </label>
+          <select  name="asignatura_id">
+            {% for asignatura in asignaturas %}
+              <option value="{{ asignatura.id }}">{{ asignatura }}</option>
+            {% endfor %}
+          </select>
+          <br/><br/><br/>
+          <button type="submit" class="save btn btn-default">Guardar</button>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+          <input type="hidden" name="inscripcion_id" value={{ inscripcion_id }}>
+        </form>
+    {% endblock %}

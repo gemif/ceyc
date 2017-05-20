@@ -1,0 +1,25 @@
+{% extends 'alumnos/base.html' %}
+    {% block content %}
+        <h1>Estados de Inscripción del Alumno: {{ alumno_nc }}</h1>
+        <h2>Contenido:  {{ contenido }}</h2>
+        <form>
+          {% if not mensaje %}
+            <table style="width:20%">
+              <tr>
+                <th align="left">Fecha</th>
+                <th align="left">Estado</th>
+              </tr>
+                {% for estado in historico_estados %}
+                <tr>
+                  <td>{{ estado.fecha|date:'d-M-Y' }}</td>
+                  <td>{{ estado.estado}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+          {% else %}
+            <li>{{ mensaje }}</li>
+          {% endif %}
+          <br/><br/><br/>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+        </form>
+    {% endblock %}

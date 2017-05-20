@@ -1,0 +1,29 @@
+{% extends 'alumnos/base.html' %}
+    {% block content %}
+        <h1>Pagos del Alumno: {{ alumno_nc }}</h1>
+        <h2>Contenido:  {{ contenido }}</h2>
+        <form>
+          {% if not mensaje %}
+            <table style="width:45%">
+              <tr>
+                <th align="left">Fecha</th>
+                <th align="left">Concepto</th>
+                <th align="left">Nro Comprobante</th>
+                <th align="left">Importe</th>
+              </tr>
+                {% for pago in pagos %}
+                <tr>
+                  <td>{{ pago.fecha_pago|date:'d-M-Y' }}</td>
+                  <td>{{ pago.plan_pago.concepto }}{{ pago.plan_pago.cuota }}</td>
+                  <td>{{ pago.numero_comprobante }}</td>
+                  <td>${{ pago.importe}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+          {% else %}
+            <li>{{ mensaje }}</li>
+          {% endif %}
+          <br/><br/><br/>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+        </form>
+    {% endblock %}

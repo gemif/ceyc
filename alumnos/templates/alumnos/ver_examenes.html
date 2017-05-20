@@ -1,0 +1,31 @@
+{% extends 'alumnos/base.html' %}
+    {% block content %}
+        <h1>Examenes del Alumno: {{ alumno_nc }}</h1>
+        <h2>Contenido:  {{ contenido }}</h2>
+        <form>
+          {% if not mensaje %}
+            <table style="width:60%">
+              <tr>
+                <th align="left">Fecha</th>
+                <th align="left">Asignatura</th>
+                <th align="left">Nota</th>
+                <th align="left">Equivalencia</th>
+                <th align="left">Aprobado</th>
+              </tr>
+                {% for examen in examenes %}
+                <tr>
+                  <td>{{ examen.fecha|date:'d-M-Y' }}</td>
+                  <td>{{ examen.asignatura }}</td>
+                  <td>{{ examen.nota }}</td>
+                  <td>{% if examen.equivalencia %} SI {% else %} NO {% endif %}</td>
+                  <td>{% if examen.aprobado %} SI {% else %} NO {% endif %}</td>
+                </tr>
+                {% endfor %}
+              </table>
+          {% else %}
+            <li>{{ mensaje }}</li>
+          {% endif %}
+          <br/><br/><br/>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+        </form>
+    {% endblock %}

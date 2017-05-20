@@ -1,0 +1,27 @@
+{% extends 'alumnos/base.html' %}
+    {% block content %}
+        <h1>Institución:  {{ institucion_nombre }}</h1>
+        <h2>Plan de Pagos del Contenido: {{ contenido_nombre }}</h2>
+        <form>
+          {% if not mensaje %}
+            <table style="width:40%">
+              <tr>
+                <th align="left">Concepto</th>
+                <th align="left">Cuota</th>
+                <th align="left">Orden</th>
+              </tr>
+                {% for plan_pago in plan_pagos %}
+                <tr>
+                  <td>{{ plan_pago.concepto }}</td>
+                  <td>{{ plan_pago.cuota }}</td>
+                  <td>{{ plan_pago.orden }}</td>
+                </tr>
+                {% endfor %}
+              </table>
+          {% else %}
+            <li>{{ mensaje }}</li>
+          {% endif %}
+          <br/><br/><br/>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+        </form>
+    {% endblock %}

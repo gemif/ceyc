@@ -1,0 +1,29 @@
+{% extends 'alumnos/base.html' %}
+    {% block content %}
+        <h1>Institución:  {{ institucion_nombre }}</h1>
+        <h2>Asignaturas del Contenido: {{ contenido_nombre }}</h2>
+        <form>
+          {% if not mensaje %}
+            <table style="width:60%">
+              <tr>
+                <th align="left">Asignatura</th>
+                <th align="left">Año</th>
+                <th align="left">Nro Período</th>
+                <th align="left">Nombre Período</th>
+              </tr>
+                {% for asignatura in asignaturas %}
+                <tr>
+                  <td>{{ asignatura.asignatura }}</td>
+                  <td>{{ asignatura.anio }}</td>
+                  <td>{{ asignatura.numero_periodo }}</td>
+                  <td>{{ asignatura.nombre_periodo }}</td>
+                </tr>
+                {% endfor %}
+              </table>
+          {% else %}
+            <li>{{ mensaje }}</li>
+          {% endif %}
+          <br/><br/><br/>
+          <input type=button value="Volver" onClick="javascript:history.go(-1);">
+        </form>
+    {% endblock %}
